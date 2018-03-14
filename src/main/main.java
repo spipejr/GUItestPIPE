@@ -5,6 +5,17 @@
  */
 package main;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import login.login;
 
 /**
@@ -13,10 +24,14 @@ import login.login;
  */
 public class main extends javax.swing.JFrame {
 
-    
+    private userpermission userper = new userpermission();
     public main() {
         initComponents();
         loadlogin();
+        time time = new time();
+        Timer timer = new Timer(500,time);
+        timer.start();
+        jLabeltest.setText(userper.UserName+userper.UserSurname+userper.UserAddress);
     }
     
     public void loadlogin()
@@ -25,6 +40,43 @@ public class main extends javax.swing.JFrame {
         login frm = new login(this, true);
         frm.setVisible(true);
         this.setVisible(true);
+        String User = frm.getLoginUser();
+        userper.GetUserAction(User);
+    }
+    class time implements ActionListener
+    {
+        public void actionPerformed(ActionEvent event) {
+            try
+            {
+                SimpleDateFormat formatTIMETH = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss", new Locale("th","TH"));
+                Date now = new Date();
+                String strDate = formatTIMETH.format(now);
+                jLabeltime.setText(strDate);
+                
+                SimpleDateFormat formattime = new SimpleDateFormat("HH:mm:ss");
+                String strTime = formattime.format(now);
+                Date in = formattime.parse("8:30:00");
+                Date out = formattime.parse("17:30:00");
+                Date timenow = formattime.parse(strTime);
+                 
+                if (timenow.after(in) && timenow.before(out)) 
+                {
+                    jLabelstatus.setText("ทำงาน");
+                    jLabelstatus.setForeground(Color.red);
+                }else
+                {
+                    jLabelstatus.setText("เลิกงานแล้ว");
+                    jLabelstatus.setForeground(Color.green);
+                }
+            }catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+            
+            
+            
+            
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,10 +89,13 @@ public class main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButtonexit = new javax.swing.JButton();
+        jLabeltime = new javax.swing.JLabel();
+        jLabelstatus = new javax.swing.JLabel();
+        jLabeltest = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setFocusTraversalPolicyProvider(true);
         jPanel1.setName(""); // NOI18N
@@ -52,30 +107,55 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jLabeltime.setBackground(new java.awt.Color(255, 255, 255));
+        jLabeltime.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabeltime.setText("time");
+
+        jLabelstatus.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabelstatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelstatus.setText("สถานะ");
+
+        jLabeltest.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(489, Short.MAX_VALUE)
-                .addComponent(jButtonexit)
-                .addGap(97, 97, 97))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonexit)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelstatus, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jLabeltime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jLabeltest, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(410, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(jLabeltime, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jLabeltest, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jButtonexit)
-                .addGap(50, 50, 50))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +211,9 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonexit;
+    private javax.swing.JLabel jLabelstatus;
+    private javax.swing.JLabel jLabeltest;
+    private javax.swing.JLabel jLabeltime;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

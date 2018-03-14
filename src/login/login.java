@@ -18,7 +18,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,9 +29,11 @@ import javax.swing.*;
  */
 public final class login extends javax.swing.JDialog {
 
+    
+
     database db = new database();
     String strname;
-    
+    String Userid;
     
     public login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -49,7 +50,7 @@ public final class login extends javax.swing.JDialog {
             Statement stmt = (Statement) database.con.createStatement();
             String sql = "SELECT * FROM login WHERE username = '"+jTextFielduser.getText()+"' AND password ='"+jPasswordField1.getText()+"' ";
             ResultSet rs = stmt.executeQuery(sql); 
-            
+            Userid = jTextFielduser.getText();
 //            String sql = "SELECT * FROM login WHERE username = '"+jTextFielduser.getText()+"' AND password ='"+jPasswordField1.getText()+"' ";
 //            PreparedStatement p = (PreparedStatement) database.con.prepareStatement(sql);
 //            ResultSet rs = p.executeQuery();
@@ -64,7 +65,7 @@ public final class login extends javax.swing.JDialog {
                 {
                     strname = rs.getString("name")+" "+rs.getString("surname");
                     
-                    JOptionPane.showMessageDialog(null, strname+" ถูก " + getCurrentTimeStamp() );
+                    JOptionPane.showMessageDialog(null, strname+" ถูก " + getCurrentTimeStamp());
                     this.dispose();
                 }
 		rs.close();
@@ -95,7 +96,7 @@ public final class login extends javax.swing.JDialog {
         String strDate = formatTIMETH.format(now);
         return strDate;
     }
-    
+
     class timeofday implements ActionListener
     {
         public void actionPerformed(ActionEvent event) {
@@ -103,7 +104,7 @@ public final class login extends javax.swing.JDialog {
             Date now = new Date();
             String strDate = formatTIMETH.format(now);
             jTextFieldTime.setText(strDate);
-            jLabeltime.setText(strDate);
+            jLabeltime.setText("  "+strDate);
             
             Date date;
             try {
@@ -125,19 +126,24 @@ public final class login extends javax.swing.JDialog {
                 {
                     jTextFieldTime.setBackground(Color.white);
                     jTextFieldTime.setForeground(Color.black);
+                    jLabeltime.setForeground(Color.white);
+                    jPanel2.setBackground(Color.black);
                 }else
                 {
                     jTextFieldTime.setBackground(Color.black);
                     jTextFieldTime.setForeground(Color.white);
+                    jLabeltime.setForeground(Color.black);
+                    jPanel2.setBackground(Color.white);
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
         }
-
-        
+    }
+    
+    public String getLoginUser() 
+    {
+            return Userid;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -149,6 +155,8 @@ public final class login extends javax.swing.JDialog {
         jButtonlogin = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jTextFieldTime = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabeltime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -188,6 +196,21 @@ public final class login extends javax.swing.JDialog {
 
         jTextFieldTime.setForeground(new java.awt.Color(255, 51, 102));
 
+        jLabel1.setText("login");
+
+        jLabeltime.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabeltime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabeltime, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -199,18 +222,19 @@ public final class login extends javax.swing.JDialog {
                         .addComponent(jButtonlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPasswordField1)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(jTextFielduser)
-                    .addComponent(jTextFieldTime, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabeltime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTime)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFielduser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,8 +245,8 @@ public final class login extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabeltime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,8 +340,10 @@ public final class login extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonlogin;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabeltime;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldTime;
     private javax.swing.JTextField jTextFielduser;
