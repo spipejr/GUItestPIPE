@@ -6,30 +6,43 @@
 package login;
 
 import database.database;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
  * @author Programmer
  */
-public class login extends javax.swing.JDialog {
+public final class login extends javax.swing.JDialog {
 
     database db = new database();
     String strname;
+    
+    
     public login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         db.dbconnect();
+        timeofday time = new timeofday();
+        Timer timer = new Timer(500,time);
+        timer.start();
     }
 
-    
     public void login()
     {
         try {
@@ -40,6 +53,7 @@ public class login extends javax.swing.JDialog {
 //            String sql = "SELECT * FROM login WHERE username = '"+jTextFielduser.getText()+"' AND password ='"+jPasswordField1.getText()+"' ";
 //            PreparedStatement p = (PreparedStatement) database.con.prepareStatement(sql);
 //            ResultSet rs = p.executeQuery();
+
             rs.first();
                 if(rs.getRow()==0)
                 {
@@ -49,7 +63,8 @@ public class login extends javax.swing.JDialog {
                 else
                 {
                     strname = rs.getString("name")+" "+rs.getString("surname");
-                    JOptionPane.showMessageDialog(null, strname+" ถูก");
+                    
+                    JOptionPane.showMessageDialog(null, strname+" ถูก " + getCurrentTimeStamp() );
                     this.dispose();
                 }
 		rs.close();
@@ -59,14 +74,70 @@ public class login extends javax.swing.JDialog {
         
         
     }
-    public void keyboardcheck(java.awt.event.KeyEvent evt, String cpname) {
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (cpname.equals("jTextFielduser")) {
-                jPasswordField1.requestFocus();
-            } else if (cpname.equals("jPasswordField1")) {
-                jButtonlogin.requestFocus();
+   
+//    public void keyboardcheck(java.awt.event.KeyEvent evt, String cpname) {
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            if (cpname.equals("jTextFielduser")) {
+//                jPasswordField1.requestFocus();
+//            } else if (cpname.equals("jPasswordField1")) {
+//                jButtonlogin.requestFocus();
+//            }
+//        } 
+//    }
+    
+    public String getCurrentTimeStamp() 
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatTH = new SimpleDateFormat("EEEE ที่ dd เดือน MMMM พ.ศ. yyyy", new Locale("th","TH"));
+        SimpleDateFormat formatTH2 = new SimpleDateFormat("dd MMMM yyyy", new Locale("th","TH"));
+        SimpleDateFormat formatTIMETH = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss", new Locale("th","TH"));
+        Date now = new Date();
+        String strDate = formatTIMETH.format(now);
+        return strDate;
+    }
+    
+    class timeofday implements ActionListener
+    {
+        public void actionPerformed(ActionEvent event) {
+            SimpleDateFormat formatTIMETH = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss", new Locale("th","TH"));
+            Date now = new Date();
+            String strDate = formatTIMETH.format(now);
+            jTextFieldTime.setText(strDate);
+            jLabeltime.setText(strDate);
+            
+            Date date;
+            try {
+                date = formatTIMETH.parse(strDate);
+                long different = (date.getTime()); 
+                long secondsInMilli = 1000;
+//                long minutesInMilli = secondsInMilli * 60;
+//                long hoursInMilli = minutesInMilli * 60;
+//                long daysInMilli = hoursInMilli * 24;
+
+//                long elapsedDays = different / daysInMilli;
+//                different = different % daysInMilli;
+//                long elapsedHours = different / hoursInMilli;
+//                different = different % hoursInMilli;
+//                long elapsedMinutes = different / minutesInMilli;
+//                different = different % minutesInMilli;
+                long elapsedSeconds = different / secondsInMilli;
+                if(elapsedSeconds%2==0)
+                {
+                    jTextFieldTime.setBackground(Color.white);
+                    jTextFieldTime.setForeground(Color.black);
+                }else
+                {
+                    jTextFieldTime.setBackground(Color.black);
+                    jTextFieldTime.setForeground(Color.white);
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
+            
+            
+        }
+
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -77,6 +148,8 @@ public class login extends javax.swing.JDialog {
         jPasswordField1 = new javax.swing.JPasswordField();
         jButtonlogin = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jTextFieldTime = new javax.swing.JTextField();
+        jLabeltime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -113,6 +186,8 @@ public class login extends javax.swing.JDialog {
             }
         });
 
+        jTextFieldTime.setForeground(new java.awt.Color(255, 51, 102));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,8 +200,12 @@ public class login extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPasswordField1)
-                    .addComponent(jTextFielduser))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addComponent(jTextFielduser)
+                    .addComponent(jTextFieldTime, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabeltime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +218,11 @@ public class login extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonlogin)
                     .addComponent(jButton1))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabeltime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,6 +273,7 @@ public class login extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -232,8 +316,11 @@ public class login extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonlogin;
+    private javax.swing.JLabel jLabeltime;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextFieldTime;
     private javax.swing.JTextField jTextFielduser;
     // End of variables declaration//GEN-END:variables
+    
 }
