@@ -44,6 +44,8 @@ public final class login extends javax.swing.JDialog {
         timer.start();
     }
 
+    
+
     public void login()
     {
         try {
