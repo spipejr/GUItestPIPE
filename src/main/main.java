@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import login.login;
+import table.tabletoex;
 
 /**
  *
@@ -32,7 +33,8 @@ public class main extends javax.swing.JFrame {
         time time = new time();
         Timer timer = new Timer(500,time);
         timer.start();
-        jLabeltest.setText(userper.UserName+userper.UserSurname+userper.UserAddress);
+        String space = "     ";
+        jLabeltest.setText(userper.UserName +space+ userper.UserSurname +space+ userper.UserAddress);
     }
     
     public void loadlogin()
@@ -97,6 +99,13 @@ public class main extends javax.swing.JFrame {
         jMenuBar4 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenuBar5 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuBar6 = new javax.swing.JMenuBar();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jButtonexit = new javax.swing.JButton();
         jLabeltime = new javax.swing.JLabel();
@@ -104,7 +113,13 @@ public class main extends javax.swing.JFrame {
         jLabeltest = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenufile = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemtestformat = new javax.swing.JMenuItem();
+        jMenuItemtesttable = new javax.swing.JMenuItem();
+        jMenuItemtablers2xml = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItemExit = new javax.swing.JMenuItem();
+        jMenuFood = new javax.swing.JMenu();
+        jMenuItemFood = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar2.add(jMenu1);
@@ -123,6 +138,20 @@ public class main extends javax.swing.JFrame {
 
         jMenu6.setText("Edit");
         jMenuBar4.add(jMenu6);
+
+        jMenu7.setText("File");
+        jMenuBar5.add(jMenu7);
+
+        jMenu8.setText("Edit");
+        jMenuBar5.add(jMenu8);
+
+        jMenu9.setText("File");
+        jMenuBar6.add(jMenu9);
+
+        jMenu10.setText("Edit");
+        jMenuBar6.add(jMenu10);
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -184,15 +213,52 @@ public class main extends javax.swing.JFrame {
 
         jMenufile.setText("File");
 
-        jMenuItem1.setText("testformat");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemtestformat.setText("testformat");
+        jMenuItemtestformat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemtestformatActionPerformed(evt);
             }
         });
-        jMenufile.add(jMenuItem1);
+        jMenufile.add(jMenuItemtestformat);
+
+        jMenuItemtesttable.setText("testtable");
+        jMenuItemtesttable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemtesttableActionPerformed(evt);
+            }
+        });
+        jMenufile.add(jMenuItemtesttable);
+
+        jMenuItemtablers2xml.setText("testtablerx2ml");
+        jMenuItemtablers2xml.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemtablers2xmlActionPerformed(evt);
+            }
+        });
+        jMenufile.add(jMenuItemtablers2xml);
+        jMenufile.add(jSeparator1);
+
+        jMenuItemExit.setText("Exit");
+        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExitActionPerformed(evt);
+            }
+        });
+        jMenufile.add(jMenuItemExit);
 
         jMenuBar1.add(jMenufile);
+
+        jMenuFood.setText("555");
+
+        jMenuItemFood.setText("555");
+        jMenuItemFood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFoodActionPerformed(evt);
+            }
+        });
+        jMenuFood.add(jMenuItemFood);
+
+        jMenuBar1.add(jMenuFood);
 
         setJMenuBar(jMenuBar1);
 
@@ -219,7 +285,7 @@ public class main extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonexitActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemtestformatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemtestformatActionPerformed
         if(userper.Usersession.equals("Y"))
         {
             format form = new format(this,true);
@@ -231,7 +297,49 @@ public class main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ไม่มีสิทธิ์");
         }
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemtestformatActionPerformed
+
+    private void jMenuItemtablers2xmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemtablers2xmlActionPerformed
+        if(userper.Usersession.equals("Y"))
+        {
+            table.tablers2xml form = new table.tablers2xml();
+//            this.setVisible(false);
+            form.setVisible(true);
+//            this.setVisible(true);
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "ไม่มีสิทธิ์");
+        }
+    }//GEN-LAST:event_jMenuItemtablers2xmlActionPerformed
+
+    private void jMenuItemtesttableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemtesttableActionPerformed
+        if(userper.Usersession.equals("Y"))
+        {
+            tabletoex form = new tabletoex(this,true);
+            form.setVisible(true);
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "ไม่มีสิทธิ์");
+        }
+    }//GEN-LAST:event_jMenuItemtesttableActionPerformed
+
+    private void jMenuItemFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFoodActionPerformed
+        if(userper.Usersession.equals("Y"))
+        {
+            F5555 form = new F5555(this,true);
+            form.setVisible(true);
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "ไม่มีสิทธิ์");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jMenuItemFoodActionPerformed
+
+    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItemExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,18 +382,31 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabeltest;
     private javax.swing.JLabel jLabeltime;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuBar jMenuBar5;
+    private javax.swing.JMenuBar jMenuBar6;
+    private javax.swing.JMenu jMenuFood;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemExit;
+    private javax.swing.JMenuItem jMenuItemFood;
+    private javax.swing.JMenuItem jMenuItemtablers2xml;
+    private javax.swing.JMenuItem jMenuItemtestformat;
+    private javax.swing.JMenuItem jMenuItemtesttable;
     private javax.swing.JMenu jMenufile;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
 }

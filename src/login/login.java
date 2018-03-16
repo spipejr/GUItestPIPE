@@ -291,7 +291,7 @@ public final class login extends javax.swing.JDialog {
     private void jTextFielduserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielduserKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) 
         {
-            login();
+            jPasswordField1.requestFocus();
         }
 //        keyboardcheck(evt, "jTextFielduser");
     }//GEN-LAST:event_jTextFielduserKeyPressed
