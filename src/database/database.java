@@ -34,6 +34,13 @@ public class database {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Database Connection Error !!!", JOptionPane.WARNING_MESSAGE);
         }
+//        try {
+//
+//            Class.forName("com.mysql.jdbc.Driver");
+//            con = DriverManager.getConnection("jdbc:mysql://localhost/test?characterEncoding=utf-8&user=root&password=000000");   
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage(), "Database Connection Error !!!", JOptionPane.WARNING_MESSAGE);
+//        }
     }
     
      public void getDbVar() {
@@ -46,7 +53,7 @@ public class database {
             try {
                 boolean eof = false;
 //                String Macno = "";
-                FileReader file = new FileReader(ClassPath.ROOTPATH+"/Users/Programmer/Desktop/dbconfig.ini");
+                FileReader file = new FileReader(ClassPath.ROOTPATH+"/Users/"+ClassPath.usercom+"/Desktop/dbconfig.ini");
                 BufferedReader buff = new BufferedReader(file);
 
                 while (!eof) {

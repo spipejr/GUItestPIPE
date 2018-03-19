@@ -339,7 +339,7 @@ public final class tablers2xml extends javax.swing.JFrame {
         
         if(evt.getClickCount()==1)
         {    try {
-//                jComboBox1.setSelectedIndex(jTable.getSelectedRow());
+                jComboBox1.setSelectedIndex(jTable.getSelectedRow());
                 Statement stmt = (Statement) database.con.createStatement();
                 String sql = "select p_name,p_price,categories.c_name from products "
                         + "left join categories on products.c_id = categories.c_id where p_id = '"+ jTable.getValueAt(jTable.getSelectedRow(), 0).toString() +"'";
@@ -500,7 +500,7 @@ public final class tablers2xml extends javax.swing.JFrame {
             Statement stmt = (Statement) database.con.createStatement();
 //            String sql = "select * from new_table order by id";
             String sql ="Select p_id As id,p_name As ชื่อ,p_price As ราคา,categories.c_name As ชนิด From products "
-                    + "left join categories on products.c_id = categories.c_id Where p_id;";
+                    + "left join categories on products.c_id = categories.c_id Where p_id order by p_id";
             ResultSet rs = stmt.executeQuery(sql);
             jTable.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException ex) {

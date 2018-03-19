@@ -20,7 +20,7 @@ public class userpermission {
     String UserName = "";
     String UserSurname = "" ;
     String UserAddress = "" ;
-    String Usersession = "N" ;
+    String Usersession = "Y" ;
     database db = new database();
     public boolean  GetUserAction(String Userid2) {
         try {

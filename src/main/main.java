@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import login.login;
+import table.selectdeletetable;
 import table.tabletoex;
 
 /**
@@ -29,7 +30,7 @@ public class main extends javax.swing.JFrame {
     
     public main() {
         initComponents();
-        loadlogin();
+//        loadlogin();
         time time = new time();
         Timer timer = new Timer(500,time);
         timer.start();
@@ -106,6 +107,7 @@ public class main extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jButtonexit = new javax.swing.JButton();
         jLabeltime = new javax.swing.JLabel();
@@ -116,6 +118,7 @@ public class main extends javax.swing.JFrame {
         jMenuItemtestformat = new javax.swing.JMenuItem();
         jMenuItemtesttable = new javax.swing.JMenuItem();
         jMenuItemtablers2xml = new javax.swing.JMenuItem();
+        Jmenuitemselectdeletetable = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItemExit = new javax.swing.JMenuItem();
         jMenuFood = new javax.swing.JMenu();
@@ -152,6 +155,8 @@ public class main extends javax.swing.JFrame {
         jMenuBar6.add(jMenu10);
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -211,7 +216,7 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenufile.setText("File");
+        jMenufile.setText("table&form");
 
         jMenuItemtestformat.setText("testformat");
         jMenuItemtestformat.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +241,14 @@ public class main extends javax.swing.JFrame {
             }
         });
         jMenufile.add(jMenuItemtablers2xml);
+
+        Jmenuitemselectdeletetable.setText("selectdeletetableมีครบ");
+        Jmenuitemselectdeletetable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmenuitemselectdeletetableActionPerformed(evt);
+            }
+        });
+        jMenufile.add(Jmenuitemselectdeletetable);
         jMenufile.add(jSeparator1);
 
         jMenuItemExit.setText("Exit");
@@ -341,6 +354,17 @@ public class main extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
+    private void JmenuitemselectdeletetableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmenuitemselectdeletetableActionPerformed
+        if(userper.Usersession.equals("Y"))
+        {
+            selectdeletetable form = new selectdeletetable(this,true);
+            form.setVisible(true);
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "ไม่มีสิทธิ์");
+        }
+    }//GEN-LAST:event_JmenuitemselectdeletetableActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -377,6 +401,7 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Jmenuitemselectdeletetable;
     private javax.swing.JButton jButtonexit;
     private javax.swing.JLabel jLabelstatus;
     private javax.swing.JLabel jLabeltest;
@@ -399,6 +424,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JMenu jMenuFood;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemFood;
     private javax.swing.JMenuItem jMenuItemtablers2xml;

@@ -26,7 +26,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  */
 public class tabletoex extends javax.swing.JDialog {
     
-    DefaultTableModel model1 = new DefaultTableModel(0,0);
+    DefaultTableModel model1 = new DefaultTableModel();
     database db = new database();
 
     /**
@@ -44,7 +44,7 @@ public class tabletoex extends javax.swing.JDialog {
     private void loaddatatotable() {
         
         String sql ="Select p_id,p_name,p_price,categories.c_name,categories.c_id From products "
-                    + "left join categories on products.c_id = categories.c_id Where p_id;";
+                    + "left join categories on products.c_id = categories.c_id Where p_id order by p_id";
         
         try {
             Statement stmt = (Statement) database.con.createStatement();
@@ -67,7 +67,7 @@ public class tabletoex extends javax.swing.JDialog {
         } catch (Exception ex) {
             ex.getMessage();
         }
-        jTabledata.setRowSelectionInterval(0, 0);
+//        jTabledata.setRowSelectionInterval(0, 0);
     }
     
     private void toExcell()
@@ -151,7 +151,7 @@ public class tabletoex extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jButtontoExcel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonExit.setForeground(new java.awt.Color(153, 0, 0));
         jButtonExit.setText("Exit");
@@ -262,7 +262,8 @@ public class tabletoex extends javax.swing.JDialog {
 
     private void jTabledataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabledataMouseClicked
         if(evt.getClickCount()==2)
-        {    try {
+        {    
+            try {
 //                jComboBox1.setSelectedIndex(jTable.getSelectedRow());
                 Statement stmt = (Statement) database.con.createStatement();
                 String sql = "select p_id,p_name,p_price,categories.c_name from products "
