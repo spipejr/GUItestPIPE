@@ -141,6 +141,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JmenuitemselectdeletetableActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemconandreport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#xe04;&#xe2d;&#xe19;&#xe42;&#xe17;&#xe23;&#xe2d;&#xe35;&#xe40;&#xe27;&#xe19; &#xe41;&#xe25;&#xe30; &#xe23;&#xe35;&#xe1e;&#xe2d;&#xe15;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemconandreportActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemExit">

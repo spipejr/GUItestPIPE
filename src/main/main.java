@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import login.login;
+import table.ControleventandShowreport;
 import table.selectdeletetable;
 import table.tabletoex;
 
@@ -30,12 +31,12 @@ public class main extends javax.swing.JFrame {
     
     public main() {
         initComponents();
-//        loadlogin();
+        loadlogin();
         time time = new time();
         Timer timer = new Timer(500,time);
         timer.start();
         String space = "     ";
-        jLabeltest.setText(userper.UserName +space+ userper.UserSurname +space+ userper.UserAddress);
+        jLabeltest.setText(userper.UserNamename +space+ userper.UserSurname +space+ userper.UserAddress);
     }
     
     public void loadlogin()
@@ -119,6 +120,7 @@ public class main extends javax.swing.JFrame {
         jMenuItemtesttable = new javax.swing.JMenuItem();
         jMenuItemtablers2xml = new javax.swing.JMenuItem();
         Jmenuitemselectdeletetable = new javax.swing.JMenuItem();
+        jMenuItemconandreport = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItemExit = new javax.swing.JMenuItem();
         jMenuFood = new javax.swing.JMenu();
@@ -249,6 +251,14 @@ public class main extends javax.swing.JFrame {
             }
         });
         jMenufile.add(Jmenuitemselectdeletetable);
+
+        jMenuItemconandreport.setText("คอนโทรอีเวน และ รีพอต");
+        jMenuItemconandreport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemconandreportActionPerformed(evt);
+            }
+        });
+        jMenufile.add(jMenuItemconandreport);
         jMenufile.add(jSeparator1);
 
         jMenuItemExit.setText("Exit");
@@ -365,6 +375,17 @@ public class main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JmenuitemselectdeletetableActionPerformed
 
+    private void jMenuItemconandreportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemconandreportActionPerformed
+        if(userper.Usersession.equals("Y"))
+        {
+            ControleventandShowreport form = new ControleventandShowreport(this,true);
+            form.setVisible(true);
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "ไม่มีสิทธิ์");
+        }
+    }//GEN-LAST:event_jMenuItemconandreportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -427,6 +448,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemFood;
+    private javax.swing.JMenuItem jMenuItemconandreport;
     private javax.swing.JMenuItem jMenuItemtablers2xml;
     private javax.swing.JMenuItem jMenuItemtestformat;
     private javax.swing.JMenuItem jMenuItemtesttable;

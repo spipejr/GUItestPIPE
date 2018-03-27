@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class userpermission {
     String Userid = "";
-    String UserName = "";
+    String UserNamename = "";
     String UserSurname = "" ;
     String UserAddress = "" ;
     String Usersession = "Y" ;
@@ -36,7 +36,7 @@ public class userpermission {
                 {
 
                     Userid = rec.getString("username") ;
-                    UserName = rec.getString("name") ;
+                    UserNamename = rec.getString("name") ;
                     UserSurname = rec.getString("surname") ;
                     UserAddress = rec.getString("address") ;
                     Usersession = rec.getString("session") ;
@@ -49,5 +49,9 @@ public class userpermission {
             return false ;
         }
         
+    }
+    public String getusername()
+    {
+        return UserNamename;
     }
 }
