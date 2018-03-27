@@ -5,7 +5,7 @@
  */
 package report;
 
-import com.sun.prism.j2d.J2DPipeline;
+
 import database.database;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -18,8 +18,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 import net.sf.jasperreports.view.JasperViewer;
 /**
  *

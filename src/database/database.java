@@ -45,7 +45,7 @@ public class database {
     
      public void getDbVar() {
 //        File fObject = new File(ClassPath.ROOTPATH+"/cpsrestaurant/dbconfig/dbconnect.ini");
-        File fObject = new File(ClassPath.ROOTPATH+"/Users/"+ClassPath.usercom+"/Desktop/dbconfig.ini");
+        File fObject = new File(ClassPath.ROOTPATH+"/dbconfig.ini");
         if (!fObject.canRead()) {
             JOptionPane.showMessageDialog(null, "กรุณากำหนด File dbconnect.ini") ;
             System.exit(0);
@@ -53,7 +53,7 @@ public class database {
             try {
                 boolean eof = false;
 //                String Macno = "";
-                FileReader file = new FileReader(ClassPath.ROOTPATH+"/Users/"+ClassPath.usercom+"/Desktop/dbconfig.ini");
+                FileReader file = new FileReader(ClassPath.ROOTPATH+"/dbconfig.ini");
                 BufferedReader buff = new BufferedReader(file);
 
                 while (!eof) {
