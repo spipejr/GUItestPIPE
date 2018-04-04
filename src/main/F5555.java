@@ -34,6 +34,7 @@ public class F5555 extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButtontest = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -54,6 +55,8 @@ public class F5555 extends javax.swing.JDialog {
 
         jLabel1.setText("jLabel1");
 
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -67,11 +70,17 @@ public class F5555 extends javax.swing.JDialog {
                         .addGap(100, 100, 100)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(288, Short.MAX_VALUE)
+                .addContainerGap(180, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -104,6 +113,12 @@ public class F5555 extends javax.swing.JDialog {
         int idx = new Random().nextInt(fruits.length);
         String random = (fruits[idx]);
         jLabel1.setText(random);
+        
+        String[] test = {"กระเพรา","ก๋วยเตี๋ยวน้ำตก","เกาเหลา","ต้มยำ","เย็นตาโฟ","ร้านเจ๊หมวย","อ้วน","ปั้ม"};
+        idx = new Random().nextInt(test.length);
+        random = (test[idx]);
+        jLabel2.setText(random);
+        
     }//GEN-LAST:event_jButtontestActionPerformed
 
     /**
@@ -152,6 +167,7 @@ public class F5555 extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtontest;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
